@@ -24,9 +24,9 @@ render_target_update_mode = 4
 
 [node name="3Dtest" parent="Control/SubViewportContainer/SubViewport" instance=ExtResource("1_gkesw")]
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="Menu_UI" type="CanvasLayer" parent="."]
 
-[node name="Menu_Buttons" type="Control" parent="UI"]
+[node name="Menu_Buttons" type="Control" parent="Menu_UI"]
 layout_mode = 3
 anchors_preset = 14
 anchor_top = 0.5
@@ -39,15 +39,14 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("2_secvn")
 
-[node name="Label" type="Label" parent="UI/Menu_Buttons"]
-layout_mode = 0
+[node name="Label" type="Label" parent="Menu_UI/Menu_Buttons"]
 offset_left = 150.0
 offset_top = 300.0
 offset_right = 234.0
 offset_bottom = 323.0
 text = "Godot Test"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Menu_Buttons"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu_UI/Menu_Buttons"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.2
@@ -60,19 +59,19 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Button_Play" type="Button" parent="UI/Menu_Buttons/VBoxContainer"]
+[node name="Button_Play" type="Button" parent="Menu_UI/Menu_Buttons/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
 text = "New Game"
 
-[node name="Button_Settings" type="Button" parent="UI/Menu_Buttons/VBoxContainer"]
+[node name="Button_Settings" type="Button" parent="Menu_UI/Menu_Buttons/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
 text = "Settings"
 
-[node name="Button_Quit" type="Button" parent="UI/Menu_Buttons/VBoxContainer"]
+[node name="Button_Quit" type="Button" parent="Menu_UI/Menu_Buttons/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
@@ -85,6 +84,6 @@ offset_bottom = 23.0
 text = "FPS 00"
 script = ExtResource("3_l6jhe")
 
-[connection signal="pressed" from="UI/Menu_Buttons/VBoxContainer/Button_Play" to="UI/Menu_Buttons" method="_play_pressed"]
-[connection signal="pressed" from="UI/Menu_Buttons/VBoxContainer/Button_Settings" to="UI/Menu_Buttons" method="_settings_pressed"]
-[connection signal="pressed" from="UI/Menu_Buttons/VBoxContainer/Button_Quit" to="UI/Menu_Buttons" method="_quit_pressed"]
+[connection signal="pressed" from="Menu_UI/Menu_Buttons/VBoxContainer/Button_Play" to="Menu_UI/Menu_Buttons" method="_play_pressed"]
+[connection signal="pressed" from="Menu_UI/Menu_Buttons/VBoxContainer/Button_Settings" to="Menu_UI/Menu_Buttons" method="_settings_pressed"]
+[connection signal="pressed" from="Menu_UI/Menu_Buttons/VBoxContainer/Button_Quit" to="Menu_UI/Menu_Buttons" method="_quit_pressed"]
