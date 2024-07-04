@@ -8,6 +8,7 @@ func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		if !Global.in_title:
 			visible = !visible
+			ui_node.visible = visible
 
 func _play_pressed():
 	if !is_instance_valid(win_scene):
