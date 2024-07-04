@@ -1,0 +1,100 @@
+[gd_scene load_steps=9 format=3 uid="uid://bggnhfa4jbo5"]
+
+[ext_resource type="Texture2D" uid="uid://otb6v6ijcxk1" path="res://Sprites/win_theme_atlas.png" id="1_je1bt"]
+[ext_resource type="Script" path="res://Scripts/Menu/menu_window.gd" id="2_seeu0"]
+[ext_resource type="Script" path="res://Scripts/Menu/menu_lvlselect.gd" id="3_rxt6r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7xiym"]
+atlas = ExtResource("1_je1bt")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ih1s"]
+size = Vector2(304, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbufi"]
+atlas = ExtResource("1_je1bt")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o05sl"]
+atlas = ExtResource("1_je1bt")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2sg4i"]
+atlas = ExtResource("1_je1bt")
+region = Rect2(32, 16, 16, 16)
+
+[node name="LVL_Select_Window" type="NinePatchRect"]
+texture_filter = 1
+offset_right = 300.0
+offset_bottom = 120.0
+texture = SubResource("AtlasTexture_7xiym")
+patch_margin_left = 1
+patch_margin_top = 21
+patch_margin_right = 1
+patch_margin_bottom = 1
+script = ExtResource("2_seeu0")
+
+[node name="Tab_Collider" type="Area2D" parent="."]
+collision_mask = 0
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tab_Collider"]
+visible = false
+position = Vector2(150, 10.5)
+shape = SubResource("RectangleShape2D_3ih1s")
+
+[node name="Close_Button" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 281.0
+offset_top = 3.0
+offset_right = 297.0
+offset_bottom = 19.0
+texture_normal = SubResource("AtlasTexture_gbufi")
+texture_pressed = SubResource("AtlasTexture_o05sl")
+texture_hover = SubResource("AtlasTexture_2sg4i")
+
+[node name="LVLSelect_Nodes" type="Node2D" parent="."]
+script = ExtResource("3_rxt6r")
+
+[node name="OptionButton" type="OptionButton" parent="LVLSelect_Nodes"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 25.0
+offset_top = 36.0
+offset_right = 275.0
+offset_bottom = 67.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+item_count = 3
+selected = 0
+popup/item_0/text = "Level 1"
+popup/item_0/id = 0
+popup/item_1/text = "Level 2"
+popup/item_1/id = 1
+popup/item_2/text = "Level 3"
+popup/item_2/id = 2
+
+[node name="Apply_Button" type="Button" parent="LVLSelect_Nodes"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 102.0
+offset_top = 74.0
+offset_right = 198.0
+offset_bottom = 105.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+text = "Start Level"
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="input_event" from="Tab_Collider" to="." method="_area2d_input"]
+[connection signal="pressed" from="Close_Button" to="." method="_close_pressed"]
+[connection signal="pressed" from="LVLSelect_Nodes/Apply_Button" to="LVLSelect_Nodes" method="_lvl_selected"]

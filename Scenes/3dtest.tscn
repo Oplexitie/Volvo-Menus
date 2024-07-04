@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cnr04q5ii5u3w"]
+
+[ext_resource type="Script" path="res://Scripts/Debug/lvl_boxspin.gd" id="1_qlwxa"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_txdvl"]
+
+[sub_resource type="Sky" id="Sky_sfgvi"]
+sky_material = SubResource("ProceduralSkyMaterial_txdvl")
+
+[sub_resource type="Environment" id="Environment_ht1ar"]
+background_mode = 2
+sky = SubResource("Sky_sfgvi")
+
+[node name="3Dtest" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+script = ExtResource("1_qlwxa")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.772822, 0, -0.634623, 0.276826, 0.899847, 0.337109, 0.571063, -0.436205, 0.695422, -2.08728, 0.77397, 1.74965)
+environment = SubResource("Environment_ht1ar")
+current = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Camera3D"]
