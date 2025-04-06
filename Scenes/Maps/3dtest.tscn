@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cnr04q5ii5u3w"]
+[gd_scene load_steps=7 format=3 uid="uid://cnr04q5ii5u3w"]
 
-[ext_resource type="Script" path="res://Scripts/Debug/lvl_boxspin.gd" id="1_qlwxa"]
+[ext_resource type="Script" uid="uid://d3ddq3vrcd2x0" path="res://Scripts/Maps/map_setup.gd" id="1_ap4fm"]
+[ext_resource type="Script" uid="uid://dss5p4afby1a6" path="res://Scripts/Debug/lvl_boxspin.gd" id="1_qlwxa"]
+[ext_resource type="PackedScene" uid="uid://cqugewlm2umsj" path="res://Scenes/UI/MenuElements/menu_elements.tscn" id="2_chn50"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_txdvl"]
 
@@ -12,6 +14,8 @@ background_mode = 2
 sky = SubResource("Sky_sfgvi")
 
 [node name="3Dtest" type="Node3D"]
+script = ExtResource("1_ap4fm")
+ui_pack = ExtResource("2_chn50")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 script = ExtResource("1_qlwxa")

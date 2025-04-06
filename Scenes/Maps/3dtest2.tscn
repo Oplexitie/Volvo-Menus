@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cilf2et7kofw7"]
+[gd_scene load_steps=6 format=3 uid="uid://cilf2et7kofw7"]
 
-[ext_resource type="Script" path="res://Scripts/Debug/lvl_boxspin.gd" id="1_rv0mh"]
+[ext_resource type="Script" uid="uid://d3ddq3vrcd2x0" path="res://Scripts/Maps/map_setup.gd" id="1_hltww"]
+[ext_resource type="Script" uid="uid://dss5p4afby1a6" path="res://Scripts/Debug/lvl_boxspin.gd" id="1_rv0mh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_txdvl"]
 
@@ -12,6 +13,7 @@ background_mode = 2
 sky = SubResource("Sky_sfgvi")
 
 [node name="3Dtest" type="Node3D"]
+script = ExtResource("1_hltww")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 size = Vector3(2, 0.5, 5)

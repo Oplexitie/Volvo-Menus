@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ResolutionList" load_steps=2 format=3 uid="uid://cdw5ynly8ceiy"]
+
+[ext_resource type="Script" uid="uid://cy6dnebr8rvbm" path="res://Scripts/Resources/resolution_list.gd" id="1_jchoo"]
+
+[resource]
+script = ExtResource("1_jchoo")
+size = Array[Vector2i]([Vector2i(1280, 720), Vector2i(1920, 1080), Vector2i(2560, 1440), Vector2i(3840, 2160), Vector2i(2560, 1080), Vector2i(3440, 1440)])
+metadata/_custom_type_script = "uid://cy6dnebr8rvbm"

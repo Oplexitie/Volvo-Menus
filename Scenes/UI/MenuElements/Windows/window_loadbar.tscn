@@ -1,0 +1,78 @@
+[gd_scene load_steps=7 format=3 uid="uid://se8ww4rck1oq"]
+
+[ext_resource type="Texture2D" uid="uid://otb6v6ijcxk1" path="res://Sprites/win_theme_atlas.png" id="1_tk58b"]
+[ext_resource type="Script" uid="uid://jvnx2nck1l74" path="res://Scripts/UI/MenuElements/Windows/menu_window.gd" id="2_e4hle"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_21630"]
+atlas = ExtResource("1_tk58b")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgikf"]
+atlas = ExtResource("1_tk58b")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylos5"]
+atlas = ExtResource("1_tk58b")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b5377"]
+atlas = ExtResource("1_tk58b")
+region = Rect2(32, 16, 16, 16)
+
+[node name="Loading_Window" type="NinePatchRect" node_paths=PackedStringArray("load_bar")]
+texture_filter = 1
+anchors_preset = -1
+anchor_right = 0.234
+anchor_bottom = 0.167
+offset_right = 0.720001
+offset_bottom = -0.360001
+mouse_filter = 0
+texture = SubResource("AtlasTexture_21630")
+patch_margin_left = 1
+patch_margin_top = 21
+patch_margin_right = 1
+patch_margin_bottom = 1
+script = ExtResource("2_e4hle")
+load_bar = NodePath("CenterContainer/ProgressBar")
+
+[node name="Tab_Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 21.0
+grow_horizontal = 2
+focus_mode = 0
+flat = true
+
+[node name="Close_Button" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -19.0
+offset_top = 3.0
+offset_right = -3.0
+offset_bottom = 19.0
+grow_horizontal = 0
+texture_normal = SubResource("AtlasTexture_lgikf")
+texture_pressed = SubResource("AtlasTexture_ylos5")
+texture_hover = SubResource("AtlasTexture_b5377")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="CenterContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+step = 1.0
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="button_down" from="Tab_Button" to="." method="_on_tab_button_down"]
+[connection signal="button_up" from="Tab_Button" to="." method="_on_tab_button_up"]
+[connection signal="pressed" from="Close_Button" to="." method="_close_pressed"]

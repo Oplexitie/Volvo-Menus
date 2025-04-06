@@ -1,0 +1,100 @@
+[gd_scene load_steps=8 format=3 uid="uid://bggnhfa4jbo5"]
+
+[ext_resource type="Texture2D" uid="uid://otb6v6ijcxk1" path="res://Sprites/win_theme_atlas.png" id="1_3nma6"]
+[ext_resource type="Script" uid="uid://jvnx2nck1l74" path="res://Scripts/UI/MenuElements/Windows/menu_window.gd" id="2_ci45h"]
+[ext_resource type="Script" uid="uid://ejm6cpvown75" path="res://Scripts/UI/MenuElements/Windows/menu_lvlselect.gd" id="3_egsb3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7xiym"]
+atlas = ExtResource("1_3nma6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbufi"]
+atlas = ExtResource("1_3nma6")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o05sl"]
+atlas = ExtResource("1_3nma6")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2sg4i"]
+atlas = ExtResource("1_3nma6")
+region = Rect2(32, 16, 16, 16)
+
+[node name="LVL_Select_Window" type="NinePatchRect"]
+texture_filter = 1
+anchors_preset = -1
+anchor_right = 0.234
+anchor_bottom = 0.167
+offset_right = 0.719971
+offset_bottom = -0.360016
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+texture = SubResource("AtlasTexture_7xiym")
+patch_margin_left = 1
+patch_margin_top = 21
+patch_margin_right = 1
+patch_margin_bottom = 1
+script = ExtResource("2_ci45h")
+
+[node name="Tab_Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 21.0
+grow_horizontal = 2
+focus_mode = 0
+flat = true
+
+[node name="Close_Button" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -19.0
+offset_top = 3.0
+offset_right = -3.0
+offset_bottom = 19.0
+grow_horizontal = 0
+texture_normal = SubResource("AtlasTexture_gbufi")
+texture_pressed = SubResource("AtlasTexture_o05sl")
+texture_hover = SubResource("AtlasTexture_2sg4i")
+
+[node name="CenterContainer" type="CenterContainer" parent="." node_paths=PackedStringArray("lvl_option")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_egsb3")
+lvl_option = NodePath("Buttons/OptionButton")
+
+[node name="Buttons" type="VBoxContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="OptionButton" type="OptionButton" parent="CenterContainer/Buttons"]
+layout_mode = 2
+focus_mode = 0
+alignment = 1
+selected = 0
+item_count = 3
+popup/item_0/text = "Level 1"
+popup/item_0/id = 0
+popup/item_1/text = "Level 2"
+popup/item_1/id = 1
+popup/item_2/text = "Level 3"
+popup/item_2/id = 2
+
+[node name="Apply_Button" type="Button" parent="CenterContainer/Buttons"]
+layout_mode = 2
+focus_mode = 0
+text = "Start Level"
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="button_down" from="Tab_Button" to="." method="_on_tab_button_down"]
+[connection signal="button_up" from="Tab_Button" to="." method="_on_tab_button_up"]
+[connection signal="pressed" from="Close_Button" to="." method="_close_pressed"]
+[connection signal="pressed" from="CenterContainer/Buttons/Apply_Button" to="CenterContainer" method="_lvl_selected"]

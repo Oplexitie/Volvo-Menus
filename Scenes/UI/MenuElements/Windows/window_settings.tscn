@@ -1,0 +1,201 @@
+[gd_scene load_steps=8 format=3 uid="uid://dxhedkw2g6efa"]
+
+[ext_resource type="Texture2D" uid="uid://otb6v6ijcxk1" path="res://Sprites/win_theme_atlas.png" id="1_8glkp"]
+[ext_resource type="Script" uid="uid://jvnx2nck1l74" path="res://Scripts/UI/MenuElements/Windows/menu_window.gd" id="2_c0iur"]
+[ext_resource type="Script" uid="uid://dk5xmu06db2p0" path="res://Scripts/UI/MenuElements/Windows/menu_setting.gd" id="3_4ka3o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_leph3"]
+atlas = ExtResource("1_8glkp")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6rtvw"]
+atlas = ExtResource("1_8glkp")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_02pjx"]
+atlas = ExtResource("1_8glkp")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nd8xr"]
+atlas = ExtResource("1_8glkp")
+region = Rect2(32, 16, 16, 16)
+
+[node name="Settings_Window" type="NinePatchRect"]
+texture_filter = 1
+anchors_preset = -1
+anchor_right = 0.26
+anchor_bottom = 0.306
+offset_right = 0.799957
+offset_bottom = -0.480011
+mouse_filter = 0
+texture = SubResource("AtlasTexture_leph3")
+patch_margin_left = 1
+patch_margin_top = 21
+patch_margin_right = 1
+patch_margin_bottom = 1
+script = ExtResource("2_c0iur")
+
+[node name="Tab_Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_bottom = 21.0
+grow_horizontal = 2
+focus_mode = 0
+flat = true
+
+[node name="Close_Button" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -18.6801
+offset_top = 3.0
+offset_right = -2.68005
+offset_bottom = 19.0
+grow_horizontal = 0
+texture_normal = SubResource("AtlasTexture_6rtvw")
+texture_pressed = SubResource("AtlasTexture_02pjx")
+texture_hover = SubResource("AtlasTexture_nd8xr")
+
+[node name="Settings_Tabs" type="TabContainer" parent="." node_paths=PackedStringArray("res_options", "win_options", "slider")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 31.0
+offset_right = -11.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 0
+tab_focus_mode = 0
+script = ExtResource("3_4ka3o")
+res_options = NodePath("Display/DisplayOptions/Resolution/OptionButton")
+win_options = NodePath("Display/DisplayOptions/Graphics/OptionButton")
+slider = NodePath("Graphics/DisplayOptions/Resolution/HSlider")
+
+[node name="Display" type="TabBar" parent="Settings_Tabs"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="DisplayOptions" type="VBoxContainer" parent="Settings_Tabs/Display"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 9.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Resolution" type="HBoxContainer" parent="Settings_Tabs/Display/DisplayOptions"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label_Resolution" type="Label" parent="Settings_Tabs/Display/DisplayOptions/Resolution"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Resolution"
+
+[node name="OptionButton" type="OptionButton" parent="Settings_Tabs/Display/DisplayOptions/Resolution"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+focus_mode = 0
+selected = 0
+item_count = 6
+popup/item_0/text = "1280x720"
+popup/item_0/id = 0
+popup/item_1/text = "1920x1080"
+popup/item_1/id = 1
+popup/item_2/text = "2560x1440"
+popup/item_2/id = 2
+popup/item_3/text = "3840x2160"
+popup/item_3/id = 3
+popup/item_4/text = "2560x1080"
+popup/item_4/id = 4
+popup/item_5/text = "3440x1440"
+popup/item_5/id = 5
+
+[node name="Graphics" type="HBoxContainer" parent="Settings_Tabs/Display/DisplayOptions"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label_WinMode" type="Label" parent="Settings_Tabs/Display/DisplayOptions/Graphics"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Window Mode"
+
+[node name="OptionButton" type="OptionButton" parent="Settings_Tabs/Display/DisplayOptions/Graphics"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+focus_mode = 0
+selected = 0
+item_count = 2
+popup/item_0/text = "Windowed"
+popup/item_0/id = 0
+popup/item_1/text = "Fullscreen"
+popup/item_1/id = 1
+
+[node name="Graphics" type="TabBar" parent="Settings_Tabs"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="DisplayOptions" type="VBoxContainer" parent="Settings_Tabs/Graphics"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 9.0
+offset_right = -10.0001
+offset_bottom = -9.99997
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Resolution" type="HBoxContainer" parent="Settings_Tabs/Graphics/DisplayOptions"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label_ResScale" type="Label" parent="Settings_Tabs/Graphics/DisplayOptions/Resolution"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Resolution Scale"
+
+[node name="HSlider" type="HSlider" parent="Settings_Tabs/Graphics/DisplayOptions/Resolution"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+focus_mode = 0
+max_value = 6.0
+scrollable = false
+
+[node name="Sounds" type="TabBar" parent="Settings_Tabs"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="Apply_Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = -42.0
+offset_right = -11.0
+offset_bottom = -11.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+focus_mode = 0
+text = "  Apply  "
+
+[connection signal="button_down" from="Tab_Button" to="." method="_on_tab_button_down"]
+[connection signal="button_up" from="Tab_Button" to="." method="_on_tab_button_up"]
+[connection signal="pressed" from="Close_Button" to="." method="_close_pressed"]
+[connection signal="pressed" from="Apply_Button" to="Settings_Tabs" method="_apply_button"]

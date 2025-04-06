@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://c50ovsa2l8p3m"]
+
+[ext_resource type="Script" uid="uid://dusm56n0gfx7k" path="res://Scripts/game_setup.gd" id="1_3dryh"]
+[ext_resource type="Script" uid="uid://dvposk75bhn7u" path="res://Scripts/Misc/resolution_manager.gd" id="2_wowpa"]
+[ext_resource type="PackedScene" uid="uid://cqugewlm2umsj" path="res://Scenes/UI/MenuElements/menu_elements.tscn" id="3_3dryh"]
+[ext_resource type="Script" uid="uid://biw1ipv3w8lwd" path="res://Scripts/Debug/test_fps.gd" id="3_wowpa"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_3dryh")
+map = "3dtest"
+viewport_path = NodePath("Viewport_Layer/SubViewportContainer/SubViewport")
+ui_layer_path = NodePath("UI_Layer")
+
+[node name="Viewport_Layer" type="CanvasLayer" parent="."]
+layer = 0
+script = ExtResource("2_wowpa")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Viewport_Layer"]
+texture_filter = 1
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="SubViewport" type="SubViewport" parent="Viewport_Layer/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="UI_Layer" type="CanvasLayer" parent="."]
+
+[node name="MenuElements" parent="UI_Layer" instance=ExtResource("3_3dryh")]
+
+[node name="Debug_Layer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="FPS_Counter" type="Label" parent="Debug_Layer"]
+offset_left = 5.0
+offset_right = 55.0
+offset_bottom = 23.0
+text = "FPS 00"
+script = ExtResource("3_wowpa")
